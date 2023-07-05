@@ -1,3 +1,24 @@
+export {
+  texVertexShader, 
+  texFragmentShader, 
+  laserVertexShader, 
+  laserFragmentShader, 
+  fishVertexShader, 
+  fishNormalMapFragmentShader, 
+  fishReflectionFragmentShader, 
+  seaweedFragmentShader, 
+  seaweedVertexShader, 
+  diffuseFragmentShader, 
+  diffuseVertexShader,
+  normalMapFragmentShader,
+  normalMapVertexShader,
+  reflectionMapFragmentShader,
+  reflectionMapVertexShader,
+  innerRefractionMapFragmentShader,
+  innerRefractionMapVertexShader,
+  outerRefractionMapFragmentShader,
+  outerRefractionMapVertexShader,
+};
 const texVertexShader = `
 attribute vec4 position;
 attribute vec2 texCoord;
