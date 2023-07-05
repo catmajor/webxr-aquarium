@@ -1,0 +1,3 @@
+[submodule "WebGLSamples"]
+	path = WebGLSamples
+	url = git@github.com:catmajor/WebGLSamples.github.io.git
