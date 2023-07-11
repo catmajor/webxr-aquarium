@@ -381,11 +381,12 @@ function Log(msg) {
 
 function getScriptText(id) {
   //tdl.log("loading: ", id);
-  var elem = document.getElementById(id);
+
+  var elem = shaders[id];
   if (!elem) {
     throw 'no element: ' + id
   }
-  return elem.text;
+  return elem;
 }
 
 function parseQueryString(s) {

@@ -1,24 +1,3 @@
-export {
-  texVertexShader, 
-  texFragmentShader, 
-  laserVertexShader, 
-  laserFragmentShader, 
-  fishVertexShader, 
-  fishNormalMapFragmentShader, 
-  fishReflectionFragmentShader, 
-  seaweedFragmentShader, 
-  seaweedVertexShader, 
-  diffuseFragmentShader, 
-  diffuseVertexShader,
-  normalMapFragmentShader,
-  normalMapVertexShader,
-  reflectionMapFragmentShader,
-  reflectionMapVertexShader,
-  innerRefractionMapFragmentShader,
-  innerRefractionMapVertexShader,
-  outerRefractionMapFragmentShader,
-  outerRefractionMapVertexShader,
-};
 const texVertexShader = `
 attribute vec4 position;
 attribute vec2 texCoord;
@@ -744,3 +723,24 @@ void main() {
       reflectColor,
       ((r + 0.3) * (reflection.r))).rgb, 1.0 - r);
 }`;
+const shaders =  {
+  texVertexShader, 
+  texFragmentShader, 
+  laserVertexShader, 
+  laserFragmentShader, 
+  fishVertexShader, 
+  fishNormalMapFragmentShader, 
+  fishReflectionFragmentShader, 
+  seaweedFragmentShader, 
+  seaweedVertexShader, 
+  diffuseFragmentShader, 
+  diffuseVertexShader,
+  normalMapFragmentShader,
+  normalMapVertexShader,
+  reflectionMapFragmentShader,
+  reflectionMapVertexShader,
+  innerRefractionMapFragmentShader,
+  innerRefractionMapVertexShader,
+  outerRefractionMapFragmentShader,
+  outerRefractionMapVertexShader,
+};
