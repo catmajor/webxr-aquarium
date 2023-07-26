@@ -490,6 +490,7 @@ function setCanvasSize(canvas, newWidth, newHeight) {
   return changed;
 }
 
+let g_aquariumRender = null;
 
 function createProgramFromTags(
     vertexTagId,
@@ -1631,6 +1632,7 @@ function initialize() {
     // turn off logging after 1 frame.
     g_logGLCalls = false;
   }
+  g_aquariumRender = render;
 
   function renderStereo(leftProjectionMatrix, rightProjectionMatrix, viewInverseMatrix, pose) {
     if (useMultiviewForStereo()) {
@@ -1748,7 +1750,6 @@ function initialize() {
     }
 
     frameCount++;
-
     g_fpsTimer.update(elapsedTime);
     fpsElem.innerHTML = g_fpsTimer.averageFPS;
 
@@ -1771,7 +1772,7 @@ function initialize() {
       setShaders(isInStereoMode && useMultiviewForStereo());
       g_shadersNeedUpdate = false;
     }
-
+    
     if (g_vrDisplay && g_vrDisplay.isPresenting) {
       /* VR UI is enabled in VR Mode. VR UI has two mode, menu mode is the mirror of control panel of
        * aquarium and non-menu mode may presents fps(could be turn off) in front of user. These two
@@ -1816,10 +1817,9 @@ function initialize() {
       eyePosition[0] = g.globals.eyeRadius;
       eyePosition[1] = g.globals.eyeHeight;
       eyePosition[2] = g.globals.eyeRadius;
-
+      
       calculateViewMatrix(viewInverseTemp, g_frameData.pose.orientation, eyePosition);
-
-      renderStereo(g_frameData.leftProjectionMatrix, g_frameData.rightProjectionMatrix, viewInverseTemp, g_frameData.pose);
+      //renderStereo(g_frameData.leftProjectionMatrix, g_frameData.rightProjectionMatrix, viewInverseTemp, g_frameData.pose);
 
       g_vrDisplay.submitFrame();
     } else if (g_stereoDemoActive) {
@@ -1855,10 +1855,9 @@ function initialize() {
           far);
 
       setToCameraLookAt(viewInverseTemp);
-
-      renderStereo(leftProjectionStereoDemo, rightProjectionStereoDemo, viewInverseTemp);
+      //renderStereo(leftProjectionStereoDemo, rightProjectionStereoDemo, viewInverseTemp);
     } else {
-      renderMono();
+      //renderMono();
     }
   }
 
