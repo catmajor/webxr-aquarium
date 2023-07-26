@@ -491,6 +491,7 @@ function setCanvasSize(canvas, newWidth, newHeight) {
 }
 
 let g_aquariumRender = null;
+let g_aquariumRenderStereo = null;
 
 function createProgramFromTags(
     vertexTagId,
@@ -1659,6 +1660,7 @@ function initialize() {
       render(rightProjectionMatrix, viewInverseMatrix, false, pose);
     }
   }
+  g_aquariumRenderStereo = renderStereo;
 
   function setToCameraLookAt(viewInverseMatrix) {
     eyePosition[0] = Math.sin(eyeClock) * g.globals.eyeRadius;
