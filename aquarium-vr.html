@@ -56,7 +56,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </details>
     </header>
     <div id="info"><a href="http://threedlibrary.googlecode.com" target="_blank">tdl.js</a> - aquarium</div>
-    <div class="fpsContainer">
+    <div class="fpsContainer" style="z-index: 99; position: fixed; background: rgba(7, 7, 7, 0.5); color: white; padding: 10px; border-radius: 20px; top: 120px">
       <div class="fps">fps: <span id="fps"></span></div>
       <div class="fps">canvas width: <span id="canvasWidth"></span></div>
       <div class="fps">canvas height: <span id="canvasHeight"></span></div>
@@ -232,12 +232,12 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
         function move() {
           const possibleMoves = {
-          "ArrowLeft": () => {position3D["x"]-=0.1;},
-          "ArrowDown": () => {position3D["z"]+=0.1;},
-          "ArrowRight": () => {position3D["x"]+=0.1;},
-          "ArrowUp": () => {position3D["z"]-=0.1;},
-          "Shift": () => {position3D["y"]+=0.1;},
-          "Control": () => {position3D["y"]-=0.1;rigidTransform[13]=position3D["y"]},
+          "ArrowLeft": () => {position3D["x"]-=0.2;},
+          "ArrowDown": () => {position3D["z"]+=0.2;},
+          "ArrowRight": () => {position3D["x"]+=0.2;},
+          "ArrowUp": () => {position3D["z"]-=0.2;},
+          "Shift": () => {position3D["y"]+=0.2;},
+          "Control": () => {position3D["y"]-=0.2;},
           }
           for (const key in pressedKeys) {
             if (pressedKeys[key]) possibleMoves[key]();
