@@ -218,9 +218,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         
 
         // Aquarium render placeholder
-        
         let XRView = pose.views[0]
-        g_aquariumRender(XRView.projectionMatrix, XRView.transform.inverse.matrix)
+        g_aquariumRender(doubleProjectionMatrix, XRView.transform.matrix)
 
 
         scene.clear = false;
