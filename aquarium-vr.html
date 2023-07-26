@@ -205,6 +205,12 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       }
 
       // Called every time a XRSession requests that a new frame be drawn.
+      let position3D = {
+          x: 0,
+          y: 10,
+          z: 0
+        }
+      let pressedKeys = {}
       function onXRFrame(t, frame) {
         let session = frame.session;
         let refSpace = session.isImmersive ?
@@ -216,10 +222,32 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
         session.requestAnimationFrame(onXRFrame);
         
+        
 
         // Aquarium render placeholder
         let XRView = pose.views[0]
-        g_aquariumRender(doubleProjectionMatrix, XRView.transform.matrix)
+        let rigidTransform = XRView.transform.matrix
+        
+        
+
+        function move() {
+          const possibleMoves = {
+          "ArrowLeft": () => {position3D["x"]-=0.1;},
+          "ArrowDown": () => {position3D["z"]+=0.1;},
+          "ArrowRight": () => {position3D["x"]+=0.1;},
+          "ArrowUp": () => {position3D["z"]-=0.1;},
+          "Shift": () => {position3D["y"]+=0.1;},
+          "Control": () => {position3D["y"]-=0.1;rigidTransform[13]=position3D["y"]},
+          }
+          for (const key in pressedKeys) {
+            if (pressedKeys[key]) possibleMoves[key]();
+          }
+        }
+        move()
+        rigidTransform[13]=position3D["y"]
+        rigidTransform[12]=position3D["x"]
+        rigidTransform[14]=position3D["z"]
+        g_aquariumRender(XRView.projectionMatrix, rigidTransform)
 
 
         scene.clear = false;
@@ -228,6 +256,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
         scene.endFrame();
       }
+      document.addEventListener('keydown', e => pressedKeys[e.key] = true)
+      document.addEventListener('keyup', e=> pressedKeys[e.key] = false)
 
       // Start the XR application.
       initXR();
