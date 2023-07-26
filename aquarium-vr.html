@@ -211,6 +211,22 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
           z: 0
         }
       let pressedKeys = {}
+
+      function move() {
+          const possibleMoves = {
+          "ArrowLeft": () => {position3D["x"]-=0.2;},
+          "ArrowDown": () => {position3D["z"]+=0.2;},
+          "ArrowRight": () => {position3D["x"]+=0.2;},
+          "ArrowUp": () => {position3D["z"]-=0.2;},
+          "Shift": () => {position3D["y"]+=0.2;},
+          "Control": () => {position3D["y"]-=0.2;},
+          }
+
+          for (const key in pressedKeys) {
+            if (pressedKeys[key]) possibleMoves[key]();
+          }
+      }
+
       function onXRFrame(t, frame) {
         let session = frame.session;
         let refSpace = session.isImmersive ?
@@ -230,20 +246,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         
         
 
-        function move() {
-          const possibleMoves = {
-          "ArrowLeft": () => {position3D["x"]-=0.2;},
-          "ArrowDown": () => {position3D["z"]+=0.2;},
-          "ArrowRight": () => {position3D["x"]+=0.2;},
-          "ArrowUp": () => {position3D["z"]-=0.2;},
-          "Shift": () => {position3D["y"]+=0.2;},
-          "Control": () => {position3D["y"]-=0.2;},
-          }
-          for (const key in pressedKeys) {
-            if (pressedKeys[key]) possibleMoves[key]();
-          }
-        }
-        move()
+        move();
+
         rigidTransform[13]=position3D["y"]
         rigidTransform[12]=position3D["x"]
         rigidTransform[14]=position3D["z"]
