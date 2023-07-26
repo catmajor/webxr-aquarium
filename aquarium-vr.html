@@ -215,10 +215,12 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         scene.startFrame();
 
         session.requestAnimationFrame(onXRFrame);
-
+        
 
         // Aquarium render placeholder
-        g_aquariumRender()
+        
+        let XRView = pose.views[0]
+        g_aquariumRender(XRView.projectionMatrix, XRView.transform.inverse.matrix)
 
 
         scene.clear = false;
